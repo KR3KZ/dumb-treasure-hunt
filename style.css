@@ -1,0 +1,57 @@
+/* format tableau */
+
+#fondtable {
+    background: url(map.jpg);
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+/* Largeur et hauteur des cases de la grille */
+
+td {
+    width: 40px;
+    height: 40px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+/* Gestion des blocs de classe "cadre" */
+
+.cadre {
+    display: inline-block;
+    width: auto;
+    /*margin: 1em;*/
+    font-size: 18px;
+}
+
+/* Couleurs des cases, avec opacité de 0.9 */
+
+.bad {
+    background: rgba(200, 0, 0, 0.9);
+}
+
+.good {
+    background: cyan;
+}
+
+.good-column {
+    background: yellow;
+}
+
+.good-line {
+    background: orange;
+}
+
+.unclicked {
+    cursor: pointer;
+}
+
+.scroller {
+    height: 500px;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+}
