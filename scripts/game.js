@@ -15,6 +15,7 @@
         generateTreasure()        > Génère la position du trésor (elle overwrite une case normale par rapport à son ID)
         addCellToCells()          > Ajoute un objet case à l'array contenant toutes les cases de la grille du jeu 
         addTries()                > Incrémente les tentatives de l'utilisateur
+        resetTries()              > Permet de reset les tentatives de l'utilisateur 
 */
 
 class Game {
@@ -93,6 +94,11 @@ class Game {
 
   addTries() {
     this.tries++;
+    document.getElementById("compte").innerHTML = this.tries;
+  }
+
+  resetTries() {
+    this.tries = 0;
     document.getElementById("compte").innerHTML = this.tries;
   }
 }
