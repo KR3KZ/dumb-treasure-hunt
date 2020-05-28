@@ -6,12 +6,7 @@
 "use strict"
 window.onload = function () { initTab(); }
 
-//Nombre de coup
-let tries = 0
-let win = false
-
-//Position trésor
-const tresor = { x: Math.floor(Math.random() * 21), y: Math.floor(Math.random() * 14) }
+let game = new Game(14, 21)
 
 //Messages du chat
 const chatFailedMessages = [
@@ -28,17 +23,8 @@ const chatBaseMessage = "<b>Coco: </b>"
 const getRandomFailedMessage = () => chatFailedMessages[Math.floor(Math.random() * chatFailedMessages.length)]
 
 function initTab() {
-    let tableHtml = "<table id='fondtable'>"
-    for (let y = 0; y < 14; y++) {
-        tableHtml += "<tr>"
-        for (let x = 0; x < 21; x++) {
-            let idCase = String(x) + "-" + String(y);
-            tableHtml += `<td onclick="clickedCase('${idCase}')" id="${idCase}" class="unclicked"></td>`
-        }
-        tableHtml += "</tr>"
-    }
-    tableHtml += "</table>"
-    document.getElementById('emplacementTable').innerHTML = tableHtml
+    document.getElementById('emplacementTable').innerHTML = game.html.getHtml('fondtable')
+    game.setNewTreasurePos();
 }
 
 function playSong(song) {
@@ -51,26 +37,26 @@ function clickedCase(id) {
     const chatElement = document.getElementById("emplacementCommentaires")
     //Si la case est cliqué ou que le jeu est terminé on return
     if (element.className !== "unclicked") return
-    if (win) return
-    tries++
-    document.getElementById('compte').innerHTML = tries
-    const coords = id.split('-')
-    const x = parseInt(coords[0])
-    const y = parseInt(coords[1])
-    if (x === tresor.x && y === tresor.y) {
+    if (game.win) return
+    game.tries++
+    document.getElementById('compte').innerHTML = game.tries
+    const pos = game.html.get2DPosCellById(parseInt(id))
+    const y = parseInt(pos[0])
+    const x = parseInt(pos[1])
+    if (y === game.treasure.y && x === game.treasure.x) {
         element.className = "good"
         chatElement.innerHTML += `<br>${chatBaseMessage}${chatWinMessage}`;
         playSong('http://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a')
-        win = true
+        game.win = true
     }
-    else if (x === tresor.x) {
-        element.className = "good-column"
-        chatElement.innerHTML += `<br>${chatBaseMessage}${chatGoodColumnMessage}`;
-        playSong('http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/bonus.wav')
-    }
-    else if (y === tresor.y) {
+    else if (y === game.treasure.y) {
         element.className = "good-line"
         chatElement.innerHTML += `<br>${chatBaseMessage}${chatGoodLineMessage}`;
+        playSong('http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/bonus.wav')
+    }
+    else if (x === game.treasure.x) {
+        element.className = "good-column"
+        chatElement.innerHTML += `<br>${chatBaseMessage}${chatGoodColumnMessage}`;
         playSong('http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/bonus.wav')
     }
     else {
