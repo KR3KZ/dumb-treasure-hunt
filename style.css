@@ -49,6 +49,14 @@ td {
     cursor: pointer;
 }
 
+.bonus {
+    background: green;
+}
+
+.malus {
+    background: rgb(56, 41, 41);
+}
+
 .scroller {
     height: 500px;
     overflow-y: scroll;

@@ -10,6 +10,8 @@ class MessageHandler {
     chatGoodLineMessage: "T'es sur la bonne ligne !",
     chatGoodColumnMessage: "T'es sur la bonne colonne !",
     chatWinMessage: "GG bg",
+    bonusMessage: "Tu as trouvé un bonus !",
+    malusMessage: "Aie, malus !",
   };
 
   static getRandomFailedMessage = () =>

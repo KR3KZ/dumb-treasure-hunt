@@ -11,14 +11,15 @@ window.onload = function () {
 let game = new Game(15, 15, true);
 
 function init() {
-  document.getElementById("emplacementTable").innerHTML = game.grid.getHtml(
-    "fondtable"
-  );
-  game.generateTreasure();
-  game.generateCellsObjects();
+  game.init();
 }
 
 function clickedCell(id) {
-  game.grid.clickedCell(id);
-  console.log(game.grid.getCellById(parseInt(id)));
+  let cell = game.grid.getCellById(parseInt(id));
+  if (!cell.clicked) {
+    game.addTries();
+    cell.execute();
+    cell.clicked = true;
+    console.log(cell);
+  }
 }
