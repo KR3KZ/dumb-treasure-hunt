@@ -1,12 +1,29 @@
+/*
+    Classe Game, représente la partie en cours
+    Attributs:
+        tries,                    > Nombre de tentatives de l'utilisateur
+        win,                      > Etat du jeu (win ou non)
+        grid,                     > Objet grille de jeu
+        treasure,                 > Objet trésor
+        cells,                    > Array contenant toutes les cases de la grille du jeu
+        useBonusMalus             > Indique l'activation des bonus/malus ou non
+    Fonctions:
+        init()                    > Démarre la partie, génère les cases
+        generateCellsObjects()    > Génère toutes les cases de la grille de jeu
+        generateBonus()           > Génère les cases bonus (elle overwrite les cases normales par rapport à leur ID)
+        generateMalus()           > Génère les cases malus (elle overwrite les cases normales par rapport à leur ID)
+        generateTreasure()        > Génère la position du trésor (elle overwrite une case normale par rapport à son ID)
+        addCellToCells()          > Ajoute un objet case à l'array contenant toutes les cases de la grille du jeu 
+        addTries()                > Incrémente les tentatives de l'utilisateur
+*/
+
 class Game {
   nbrOfBonus;
   nbrOfMalus;
-  constructor(y, x, useBonusMalus) {
+  constructor(height, width, useBonusMalus) {
     this.tries = 0;
     this.win = false;
-    this.y = y;
-    this.x = x;
-    this.grid = new Grid(this.y, this.x);
+    this.grid = new Grid(height, width);
     this.treasure = new Treasure();
     this.cells = [];
     this.useBonusMalus = useBonusMalus;

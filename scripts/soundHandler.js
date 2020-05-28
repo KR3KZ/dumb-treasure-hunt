@@ -1,3 +1,8 @@
+/*
+    Classe Static SoundHandler
+      Gère les sons
+*/
+
 class SoundHandler {
   static sounds = {
     winSound:

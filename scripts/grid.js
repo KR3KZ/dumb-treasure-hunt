@@ -1,3 +1,15 @@
+/*
+    Classe Grid, l'objet grille de jeu
+    Attributs:
+        height,                   > Taille verticale de la grille de jeu
+        width,                    > Taille horizontale de la grille de jeu
+        numberOfCell,             > Nombre de cases dans la grille de jeu
+    Fonctions:
+        getCellById()             > Permet de get l'objet d'une case grâce à son id
+        getHtml()                 > Permet de génerer le code html de la grille de jeu
+        get2DPosCellById()        > Permet de retrouver la position 2D d'une case grâce à son ID
+*/
+
 class Grid {
   constructor(height, width) {
     this.height = height;

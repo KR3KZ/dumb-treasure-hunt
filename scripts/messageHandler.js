@@ -1,3 +1,8 @@
+/*
+    Classe Static MessageHandler
+      Gère les messages
+*/
+
 class MessageHandler {
   //Messages du chat
   static chatFailedMessages = [

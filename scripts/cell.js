@@ -1,3 +1,15 @@
+/*
+    Classe Cell, représente chaque case de la grille
+    Attributs:
+        id,         > ID de la case
+        y,          > Position verticale de la case sur la grille
+        x,          > Position horizontale de la case sur la grille
+        type,       > Type de la case (case normale, trésor, bonus, malus ?)
+        clicked     > true si la case a déjà été cliquée
+    Fonctions:
+        execute()   > Changement de couleur, affichage du message, lecture du son en fonction de la classe
+*/
+
 class Cell {
   constructor(id, y, x) {
     this.id = id;
