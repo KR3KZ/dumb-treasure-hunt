@@ -23,26 +23,24 @@ class Cell {
     if (element.className !== "unclicked") return;
     let msg;
     let sound;
-    if (this.y === game.treasure.y && this.x === game.treasure.x) {
-      element.className = "good";
-      msg = `${MessageHandler.msg.chatWinMessage}`;
-      sound = SoundHandler.sounds.winSound;
-      SoundHandler.playSound(SoundHandler.sounds.winSound);
-      game.win = true;
-    } else if (this.y === game.treasure.y) {
+    let div;
+    if (this.y === game.treasure.y) {
       element.className = "good-line";
       msg = `${MessageHandler.msg.chatGoodLineMessage}`;
+      div = MessageHandler.alert.good;
       sound = SoundHandler.sounds.goodSound;
     } else if (this.x === game.treasure.x) {
       element.className = "good-column";
       msg = `${MessageHandler.msg.chatGoodColumnMessage}`;
+      div = MessageHandler.alert.good;
       sound = SoundHandler.sounds.goodSound;
     } else {
       element.className = "bad";
       msg = `${MessageHandler.getRandomFailedMessage()}`;
+      div = MessageHandler.alert.bad;
       sound = SoundHandler.sounds.failSound;
     }
-    MessageHandler.postMessage(msg);
+    MessageHandler.postMessage(msg, div);
     SoundHandler.playSound(sound);
   }
 }
@@ -57,10 +55,12 @@ class Treasure extends Cell {
     if (element.className !== "unclicked") return;
     let msg;
     let sound;
+    let div;
     element.className = "good";
     msg = `${MessageHandler.msg.chatWinMessage}`;
     sound = SoundHandler.sounds.winSound;
-    MessageHandler.postMessage(msg);
+    div = MessageHandler.alert.win;
+    MessageHandler.postMessage(msg, div);
     SoundHandler.playSound(sound);
     game.win = true;
   }
@@ -76,10 +76,12 @@ class Bonus extends Cell {
     if (element.className !== "unclicked") return;
     let msg;
     let sound;
+    let div;
     element.className = "bonus";
     msg = `${MessageHandler.msg.bonusMessage}`;
     sound = SoundHandler.sounds.winSound;
-    MessageHandler.postMessage(msg);
+    div = MessageHandler.alert.bonus;
+    MessageHandler.postMessage(msg, div);
     SoundHandler.playSound(sound);
   }
 }
@@ -94,10 +96,12 @@ class Malus extends Cell {
     if (element.className !== "unclicked") return;
     let msg;
     let sound;
+    let div;
     element.className = "malus";
     msg = `${MessageHandler.msg.malusMessage}`;
     sound = SoundHandler.sounds.failSound;
-    MessageHandler.postMessage(msg);
+    div = MessageHandler.alert.malus;
+    MessageHandler.postMessage(msg, div);
     SoundHandler.playSound(sound);
   }
 }

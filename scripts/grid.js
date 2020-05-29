@@ -6,6 +6,9 @@
         numberOfCell,             > Nombre de cases dans la grille de jeu
     Fonctions:
         getCellById()             > Permet de get l'objet d'une case grâce à son id
+        getCellByY()              > Permet de get un array de cases grâce à son attribut y
+        getCellByX()              > Permet de get un array de cases grâce à son attribut x
+        getCellByType()           > Permet de get un array de cases grâce à son attribut type
         getHtml()                 > Permet de génerer le code html de la grille de jeu
         get2DPosCellById()        > Permet de retrouver la position 2D d'une case grâce à son ID
 */
@@ -21,8 +24,20 @@ class Grid {
     return game.cells.find((d) => d.id === id);
   }
 
+  getCellByY(y) {
+    return game.cells.filter((d) => d.y === y);
+  }
+
+  getCellByX(x) {
+    return game.cells.filter((d) => d.x === x);
+  }
+
+  getCellByType(type) {
+    return game.cells.filter((d) => d.type === type);
+  }
+
   getHtml(id) {
-    let html = `<table id='${id}'>`;
+    let html = `<table class="table" id='${id}'>`;
     for (let y = 0; y < this.height; y++) {
       html += "<tr>";
       for (let x = 0; x < this.width; x++) {

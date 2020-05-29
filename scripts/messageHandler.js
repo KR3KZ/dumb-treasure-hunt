@@ -11,6 +11,7 @@ class MessageHandler {
     "Absolument pas !",
     "Eclaté au sol",
   ];
+
   static msg = {
     chatGoodLineMessage: "T'es sur la bonne ligne !",
     chatGoodColumnMessage: "T'es sur la bonne colonne !",
@@ -19,13 +20,22 @@ class MessageHandler {
     malusMessage: "Aie, malus !",
   };
 
+  static alert = {
+    bad: "secondary",
+    good: "success",
+    win: "warning",
+    bonus: "info",
+    malus: "dark",
+  };
+
   static getRandomFailedMessage = () =>
     MessageHandler.chatFailedMessages[
       Math.floor(Math.random() * MessageHandler.chatFailedMessages.length)
     ];
 
-  static postMessage = (msg) => {
+  static postMessage = (msg, div) => {
     const chatElement = document.getElementById("emplacementCommentaires");
-    chatElement.innerHTML += `<br>${Coco.cfg.name}${msg}`;
+    chatElement.innerHTML += `<div class="alert alert-${div}" role="alert"><br>${Coco.cfg.name}${msg}</div>`;
+    chatElement.scroll(chatElement.scrollHeight, chatElement.scrollHeight)
   };
 }
