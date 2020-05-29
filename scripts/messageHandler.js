@@ -36,6 +36,12 @@ class MessageHandler {
   static postMessage = (msg, div) => {
     const chatElement = document.getElementById("emplacementCommentaires");
     chatElement.innerHTML += `<div class="alert alert-${div}" role="alert"><br>${Coco.cfg.name}${msg}</div>`;
-    chatElement.scroll(chatElement.scrollHeight, chatElement.scrollHeight)
+    chatElement.scroll(chatElement.scrollHeight, chatElement.scrollHeight);
+  };
+
+  static postMessageWithBonus = (msg, div, bonus) => {
+    const chatElement = document.getElementById("emplacementCommentaires");
+    chatElement.innerHTML += `<div class="alert alert-${div}" role="alert"><br>${Coco.cfg.name}${msg} ${bonus}</div>`;
+    chatElement.scroll(chatElement.scrollHeight, chatElement.scrollHeight);
   };
 }

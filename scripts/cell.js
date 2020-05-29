@@ -53,13 +53,10 @@ class Treasure extends Cell {
   execute() {
     const element = document.getElementById(this.id);
     if (element.className !== "unclicked") return;
-    let msg;
-    let sound;
-    let div;
     element.className = "good";
-    msg = `${MessageHandler.msg.chatWinMessage}`;
-    sound = SoundHandler.sounds.winSound;
-    div = MessageHandler.alert.win;
+    const msg = `${MessageHandler.msg.chatWinMessage}`;
+    const sound = SoundHandler.sounds.winSound;
+    const div = MessageHandler.alert.win;
     MessageHandler.postMessage(msg, div);
     SoundHandler.playSound(sound);
     game.win = true;
@@ -76,17 +73,14 @@ class Bonus extends Cell {
   execute() {
     const element = document.getElementById(this.id);
     if (element.className !== "unclicked") return;
-    let msg;
-    let sound;
-    let div;
-    console.log(this.effect);
     element.className = "bonus";
-    msg = `${MessageHandler.msg.bonusMessage}`;
-    sound = SoundHandler.sounds.winSound;
-    div = MessageHandler.alert.bonus;
-    MessageHandler.postMessage(msg, div);
-    SoundHandler.playSound(sound);
+    const msg = `${MessageHandler.msg.bonusMessage}`;
+    const sound = SoundHandler.sounds.winSound;
+    const div = MessageHandler.alert.bonus;
+    const bonus = this.effect.description
     this.effect.execute()
+    MessageHandler.postMessageWithBonus(msg, div, bonus);
+    SoundHandler.playSound(sound);
   }
 }
 
@@ -98,13 +92,10 @@ class Malus extends Cell {
   execute() {
     const element = document.getElementById(this.id);
     if (element.className !== "unclicked") return;
-    let msg;
-    let sound;
-    let div;
     element.className = "malus";
-    msg = `${MessageHandler.msg.malusMessage}`;
-    sound = SoundHandler.sounds.failSound;
-    div = MessageHandler.alert.malus;
+    const msg = `${MessageHandler.msg.malusMessage}`;
+    const sound = SoundHandler.sounds.failSound;
+    const div = MessageHandler.alert.malus;
     MessageHandler.postMessage(msg, div);
     SoundHandler.playSound(sound);
   }
