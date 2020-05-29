@@ -70,6 +70,8 @@ class Bonus extends Cell {
   constructor(id, y, x) {
     super(id, y, x);
     this.type = 2;
+    this.effect =
+      Event.bonus[Math.floor(Math.random() * Object.keys(Event.bonus).length)];
   }
   execute() {
     const element = document.getElementById(this.id);
@@ -77,12 +79,14 @@ class Bonus extends Cell {
     let msg;
     let sound;
     let div;
+    console.log(this.effect);
     element.className = "bonus";
     msg = `${MessageHandler.msg.bonusMessage}`;
     sound = SoundHandler.sounds.winSound;
     div = MessageHandler.alert.bonus;
     MessageHandler.postMessage(msg, div);
     SoundHandler.playSound(sound);
+    this.effect.execute()
   }
 }
 
@@ -104,4 +108,50 @@ class Malus extends Cell {
     MessageHandler.postMessage(msg, div);
     SoundHandler.playSound(sound);
   }
+}
+
+class Event {
+  static bonus = {
+    0: {
+      name: "Chanceux !",
+      description: "Vous avez trouvé 10 cases inutiles.",
+      execute() {
+        const res = game.grid.getUnclickedCellByType(0);
+        if (res.length > 0) {
+          for (let i = 0; i < 10; i++) {
+            var cell = res[Math.floor(Math.random() * res.length)];
+            cell.clicked = true;
+            cell.execute();
+          }
+        }
+      },
+    },
+    1: {
+      name: "Tricheur !",
+      description: "Vous avez retiré 5 tentatives au compteur.",
+      execute() {
+        if (game.tries >= 5) {
+          game.setTries(game.tries - 5);
+        }
+      },
+    },
+    2: {
+      name: "So smart !",
+      description: "Vous avez retiré 2 malus de la grille.",
+      execute() {
+        const res = game.grid.getCellByType(2);
+        for (let i = 0; i < 2; i++) {
+          const cell = res[Math.floor(Math.random() * res.length)];
+          const id = cell.id;
+          const y = cell.y;
+          const x = cell.x;
+          const newCell = new Cell(id, y, x);
+          game.cells[id] = newCell;
+          game.nbrOfMalus--;
+        }
+      },
+    },
+  };
+
+  static malus = {};
 }

@@ -22,8 +22,8 @@ function clickedCell(id) {
   if (!cell.clicked && !game.win) {
     //Si l'utilisateur n'a pas déjà cliqué sur le case, on effectue une suite de tâches
     game.addTries();
-    cell.execute();
     cell.clicked = true;
+    cell.execute();
     console.log(cell);
   }
 }

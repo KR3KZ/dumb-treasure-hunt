@@ -9,6 +9,7 @@
         getCellByY()              > Permet de get un array de cases grâce à son attribut y
         getCellByX()              > Permet de get un array de cases grâce à son attribut x
         getCellByType()           > Permet de get un array de cases grâce à son attribut type
+        getUnclickedCellByType()  > Permet de get un array de cases non cliquées grâce à son attribut type
         getHtml()                 > Permet de génerer le code html de la grille de jeu
         get2DPosCellById()        > Permet de retrouver la position 2D d'une case grâce à son ID
 */
@@ -34,6 +35,10 @@ class Grid {
 
   getCellByType(type) {
     return game.cells.filter((d) => d.type === type);
+  }
+
+  getUnclickedCellByType(type) {
+    return game.cells.filter((d) => d.type === type && d.clicked == false);
   }
 
   getHtml(id) {
