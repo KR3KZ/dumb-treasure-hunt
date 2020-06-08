@@ -37,9 +37,9 @@ class Game {
     );
 
     game.generateCellsObjects();
-    game.generateTreasure();
     game.generateBonus();
     game.generateMalus();
+    game.generateTreasure();
   }
 
   generateCellsObjects() {
